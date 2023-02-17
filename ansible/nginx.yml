@@ -1,0 +1,31 @@
+- name: Install nginx docker
+  hosts: all
+  become: True
+  connection: ssh
+  tasks:
+    - name: Upgrade all package
+      become: yes
+      apt:
+        upgrade: dist
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+    - name: Install Docker compose package
+      apt:
+        name: docker-compose
+        state: latest
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+    
+    - name: Start Docker Services
+      service:
+        name: docker
+        state: started
+
+    - name: Copy file bash.sh
+      ansible.builtin.copy:
+        src: ./files/
+        dest: /tmp/
+    
+    - name: execute docker-compose nginx
+      shell: cd /tmp/ && docker-compose up -d

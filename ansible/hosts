@@ -1,0 +1,5 @@
+[vm]
+ip_instance
+
+[vm:vars]
+ansible_user=ubuntu

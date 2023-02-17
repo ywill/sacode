@@ -1,0 +1,1 @@
+Kita menggunakan Terraform untuk membuat infrastructure di Cloud provider. Lalu untuk Ansible kita gunakan untuk melakukan update or upgrade OS, instalasi package,dll
